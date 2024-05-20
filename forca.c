@@ -10,14 +10,32 @@ int main(){
     int acertou = 0;
     int enforcou = 0;
     
+    char chutes[26];
+    int tentativas = 0;
+    
     do{
+       for(int i=0;i<strlen(palavra_secreta); i++){
+           int achou = 0;
+           
+           for(int j=0;j<tentativas;j++){
+               if(chutes[j] == palavra_secreta[i]){
+                   achou = 1;
+                   break;
+                }
+           }
+           if(achou){
+               printf("%c ",palavra_secreta[i]);
+           }else{
+               printf("_ ");
+       	   }
+       }
+       printf("\n");
        char palpite;
-       scanf("%c", &palpite);
+       scanf(" %c", &palpite);
        
-       for(int i = 0; i<strlen(palavra_secreta); i++){
-       	    if(palavra_secreta[i] == palpite){
-       	       printf("A posição %d tem essa letra!\n", i);
-      	    }
-    } 
-}while(!acertou && !enforcou);
+       chutes[tentativas] = palpite;
+       tentativas++;
+       
+     
+    }while(!acertou && !enforcou);
 }
