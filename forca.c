@@ -8,6 +8,14 @@ void inicio(){
     printf("---------------\n\n");
 }
 
+void chute(char chutes[26],int* tentativas){ 
+    char palpite;
+    scanf(" %c", &palpite);
+       
+    chutes[*tentativas] = palpite;
+    (*tentativas)++;
+}
+
 int main(){
     inicio();
     
@@ -38,11 +46,8 @@ int main(){
        	   }
        }
        printf("\n");
-       char palpite;
-       scanf(" %c", &palpite);
        
-       chutes[tentativas] = palpite;
-       tentativas++;
+       chute(chutes, &tentativas);
        
      
     }while(!acertou && !enforcou);
