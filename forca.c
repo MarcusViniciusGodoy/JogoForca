@@ -2,7 +2,15 @@
 #include <stdlib.h>
 #include <string.h>
 
+void inicio(){
+    printf("---------------\n");
+    printf(" Jogo de Forca \n");
+    printf("---------------\n\n");
+}
+
 int main(){
+    inicio();
+    
     char palavra_secreta[20];
 		
     sprintf(palavra_secreta, "MELANCIA");
