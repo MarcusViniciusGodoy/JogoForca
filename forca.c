@@ -16,6 +16,19 @@ void chute(char chutes[26],int* tentativas){
     (*tentativas)++;
 }
 
+int ja_chutou(char letra, char chutes[26], int tentativas){
+    int achou = 0;
+           
+    for(int j=0;j<tentativas;j++){
+       if(chutes[j] == letra){
+          achou = 1;
+          break;
+       }
+    }
+    
+    return achou;
+}
+
 int main(){
     inicio();
     
@@ -31,14 +44,8 @@ int main(){
     
     do{
        for(int i=0;i<strlen(palavra_secreta); i++){
-           int achou = 0;
+           int achou = ja_chutou(palavra_secreta[i], chutes, tentativas);
            
-           for(int j=0;j<tentativas;j++){
-               if(chutes[j] == palavra_secreta[i]){
-                   achou = 1;
-                   break;
-                }
-           }
            if(achou){
                printf("%c ",palavra_secreta[i]);
            }else{
