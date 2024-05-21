@@ -47,6 +47,38 @@ void desenha_forca(){
     printf("\n");
 }
 
+void adiciona_palavra(){
+    char quer;
+    
+    printf("Você deseja adicionar uma palavra no jogo? [s/n]\n");
+    scanf(" %c", &quer);
+    
+    if(quer == 's'){
+       char nova_palavra[20];
+       printf("Qual a nova palavra? \n");
+       scanf("%s", nova_palavra);
+       
+       FILE* f;
+       
+       f = fopen("palavra.txt", "r+");
+       if(f == 0){
+           printf("Desculpe banco de dados não disponível!\n\n");
+           exit(1);
+       }
+       
+       int qtd;
+       fscanf(f, "%d", &qtd);
+       qtd++;
+       
+       fseek(f, 0, SEEK_SET);
+       fprintf(f, "%d", qtd);
+       
+       fseek(f, 0, SEEK_END);
+       fprintf(f, "\n%s", nova_palavra);
+       fclose(f);
+    }
+}
+
 void escolhe_palavra(){
     FILE* f;
     
@@ -105,4 +137,5 @@ int main(){
        chute();
 
     }while(!acertou() && !enforcou());
+    adiciona_palavra();
 }
