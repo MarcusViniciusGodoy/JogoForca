@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "forca.h"
 
 char palavra_secreta[20];
@@ -47,7 +48,25 @@ void desenha_forca(){
 }
 
 void escolhe_palavra(){
-    sprintf(palavra_secreta, "MELANCIA");
+    FILE* f;
+    
+    f = fopen("palavra.txt", "r");
+    if(f == 0){
+       printf("Desculpe banco de dados não disponível!\n\n");
+       exit(1);
+    }
+    
+    int qtdepalavra;
+    fscanf(f, "%d", &qtdepalavra);
+    
+    srand(time(0));
+    int randomico = rand() % qtdepalavra;
+    
+    for(int i=0;i<=randomico;i++){
+        fscanf(f, "%s", palavra_secreta);
+    } 
+    
+    fclose(f);
 }
 
 int acertou(){
